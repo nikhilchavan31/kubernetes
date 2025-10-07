@@ -1,0 +1,17 @@
+fist add sg group 6443  and 10250 
+run commmad
+sudo ufw allow 6443/tcp
+sudo ufw allow 2379:2380/tcp
+sudo ufw allow 10250:10255/tcp
+sudo ufw reload
+then 
+parmition to file read write execute 
+sudo chmod +x file name.sh 
+read and excute only
+EF not insatlll k8s then restar all service and reload
+sudo service kubectl reload
+             kubelet reload
+             kubeadm restart
+             container restart
+             docker restart
+             
