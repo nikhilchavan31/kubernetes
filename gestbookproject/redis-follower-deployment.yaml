@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-follower
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis
+      role: follower
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: follower
+        tier: backend
+    spec:
+      containers:
+      - name: redis-follower
+        image: docker.io/redis:7.0.5-alpine
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - name: redis-config
+          mountPath: /usr/local/etc/redis/redis.conf
+          subPath: slave-node.conf
+        command: ["/bin/sh"]
+        args: ["-c", "redis-server /usr/local/etc/redis/redis.conf"]
+      volumes:
+      - name: redis-config
+        configMap:
+          name: redis-config
