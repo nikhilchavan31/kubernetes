@@ -1,0 +1,43 @@
+Install kubectl (K8s CLI).
+Install Minikube for a local cluster (optional but recommended for testing).
+Docker (for building if needed, but we'll use pre-built images).
+Start Minikube: minikube start.
+
+Create a new directory for the project, e.g., k8s-guestbook, and add the files below inside it. All files are YAML manifests.
+
+README.md
+
+redis-configmap.yaml
+
+redis-leader-deployment.yaml
+
+redis-leader-service.yaml
+
+redis-follower-deployment.yaml
+
+redis-follower-service.yaml
+
+frontend-deployment.yaml
+
+frontend-service.yaml
+
+Deployment Instructions
+
+Navigate to the project directory: cd k8s-guestbook.
+Apply all manifests: kubectl apply -f . (in order: ConfigMap first, then Deployments/Services).
+Verify:
+
+kubectl get deployments (should show 3 deployments ready).
+kubectl get services (frontend-service gets a NodePort).
+
+
+Access the app:
+
+Local (Minikube): minikube service frontend-service.
+Port-forward: kubectl port-forward service/frontend-service 8080:80 then open http://localhost:8080.
+
+
+Leave a message in the guestbook—it should store in Redis!
+
+Cleanup
+kubectl delete -f .
