@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-config
+data:
+  update-node.conf: |
+    # Redis config for leader
+    port 6379
+    cluster-enabled yes
+    cluster-require-full-coverage no
+  slave-node.conf: |
+    # Redis config for followers
+    port 6379
+    cluster-enabled yes
+    cluster-require-full-coverage no
+    cluster-node-timeout 5000
+    appendonly yes
