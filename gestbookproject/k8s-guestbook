@@ -1,0 +1,9 @@
+k8s-guestbook/
+├── README.md                 # Project instructions
+├── frontend-deployment.yaml  # Deployment for the web frontend
+├── frontend-service.yaml     # Service to expose the frontend
+├── redis-leader-deployment.yaml # Deployment for Redis leader (primary)
+├── redis-leader-service.yaml # Service for Redis leader
+├── redis-follower-deployment.yaml # Deployment for Redis followers (replicas)
+├── redis-follower-service.yaml # Service for Redis followers
+└── redis-configmap.yaml      # ConfigMap for Redis configuration
